@@ -1,21 +1,22 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const User = props => {
-  console.log(props.picture);
   return (
     <View style={styles.contactContainer}>
       <Image style={styles.image} source={{uri: props.picture}} />
       <View style={styles.detailContainer}>
         <View style={styles.nameContainer}>
           <Text style={styles.name}>{props.fullName}</Text>
-          {/* <Icon
-            style={styles.icon}
-            name={(props.checked && 'cards-heart') || 'cards-heart-outline'}
-            size={30}
-            color="black"
-          /> */}
+          <TouchableOpacity>
+            <Icon
+              style={styles.icon}
+              name="heart-outline"
+              size={30}
+              color="black"
+            />
+          </TouchableOpacity>
         </View>
         <Text style={{margin: 1}}>{props.email}</Text>
         <Text style={{margin: 1}}>{props.phone}</Text>
@@ -27,17 +28,19 @@ const User = props => {
 
 const styles = StyleSheet.create({
   image: {
-    height: 20,
-    width: 20,
+    height: 100,
+    width: 100,
+    margin: 10,
+    borderRadius: 10,
   },
   contactContainer: {
     flexDirection: 'row',
     marginTop: 10,
-    marginLeft: 5,
     marginRight: 5,
-    width: '100%',
+    width: 340,
     borderColor: 'black',
-    borderBottomWidth: 1,
+    borderRadius: 10,
+    borderWidth: 1,
   },
 
   name: {
@@ -54,7 +57,7 @@ const styles = StyleSheet.create({
 
   icon: {
     elevation: 1,
-    alignContent: 'flex-end',
+    justifyContent: 'space-between',
     marginHorizontal: 5,
   },
 
