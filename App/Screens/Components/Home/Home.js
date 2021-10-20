@@ -37,11 +37,12 @@ const Home = ({props}) => {
           userDetails(item);
         }}>
         <User
-          picture={item.picture.medium}
-          fullName={`${item.name.first} ${item.name.last}`}
-          email={item.email}
-          phone={item.cell}
-          location={`${item.location.city} ${item.location.state} ${item.location.country}`}
+          // picture={item.picture.medium}
+          // fullName={`${item.name.first} ${item.name.last}`}
+          // email={item.email}
+          // phone={item.cell}
+          // location={`${item.location.city} ${item.location.state} ${item.location.country}`}
+          item={item}
         />
       </TouchableOpacity>
     );

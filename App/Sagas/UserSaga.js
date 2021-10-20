@@ -1,5 +1,5 @@
 import {put} from '@redux-saga/core/effects';
-import {SET_CONTACTS} from '../Actions/Keys';
+import {SET_CONTACTS, SET_FAVORITE_USER} from '../Actions/Keys';
 import {getContactList} from '../Services/UserService';
 
 export function* getUserSaga(action) {
@@ -19,4 +19,11 @@ export function* getUserContactSaga(action) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export function* setFavoriteUserContactsSaga(action) {
+  try {
+    // Here call Service from UserService
+    yield put({type: SET_FAVORITE_USER, payload: action.item});
+  } catch (error) {}
 }
