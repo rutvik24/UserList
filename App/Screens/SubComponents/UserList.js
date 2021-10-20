@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch} from 'react-redux';
 import {setFavoriteUserContacts} from '../../Actions/UserActions';
@@ -8,22 +8,28 @@ const User = props => {
   const dispatch = useDispatch();
   const {item} = props;
   const {picture, name, location} = item;
+  const {
+    contactContainer,
+    image,
+    nameContainer,
+    fullName,
+    icon,
+    detailContainer,
+  } = styles;
 
   return (
-    <View style={styles.contactContainer}>
-      <Image style={styles.image} source={{uri: picture.medium}} />
-      <View style={styles.detailContainer}>
-        <View style={styles.nameContainer}>
-          <Text style={styles.name}>{`${name.first} ${name.last}`}</Text>
-          <TouchableOpacity
-            onPress={() => dispatch(setFavoriteUserContacts(props.item))}>
-            <Icon
-              style={styles.icon}
-              name="heart-outline"
-              size={30}
-              color="black"
-            />
-          </TouchableOpacity>
+    <View style={contactContainer}>
+      <Image style={image} source={{uri: picture.medium}} />
+      <View style={detailContainer}>
+        <View style={nameContainer}>
+          <Text style={fullName}>{`${name.first} ${name.last}`}</Text>
+          <Icon
+            style={icon}
+            name="heart-outline"
+            size={30}
+            color="black"
+            onPress={() => dispatch(setFavoriteUserContacts(props.item))}
+          />
         </View>
         <Text style={{margin: 1}}>{item.email}</Text>
         <Text style={{margin: 1}}>{item.phone}</Text>
@@ -54,7 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  name: {
+  fullName: {
     fontSize: 15,
     fontWeight: 'bold',
     padding: 5,
