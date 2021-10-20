@@ -1,10 +1,10 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, Button, TouchableOpacity} from 'react-native';
 import {CustomText} from '../../CommonComponent';
 import CommonStyle from '../../../Theme/CommonStyle';
 import {AppContext} from '../../../AppContext';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/core';
+import {PrivateValueStore, useNavigation} from '@react-navigation/core';
 import {getUserContacts} from '../../../Actions/UserActions';
 import User from '../../SubComponents/UserList';
 
@@ -13,6 +13,7 @@ const Home = ({props}) => {
   const {contacts} = useSelector(state => state.user);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  // const [favorite, setFavorite] = useState([]);
 
   useEffect(() => {
     dispatch(getUserContacts());
@@ -45,6 +46,25 @@ const Home = ({props}) => {
       </TouchableOpacity>
     );
   };
+
+  // handleAddFavorite = () => {
+  //   if(favorite) {
+  //     setFavorite([...favorite, {item: item, key: Date.now(), checked: true}])
+  //   }
+  // };
+
+  // handleFavorite = (id) => {
+  //   setFavorite(task.map((favorite) => {
+  //     if (favorite.key === id) !favorite.checked = favorite.checked;
+  //     return favorite;
+  //   }))
+  // };
+
+  // favoriteList = (id) => {
+  //   setFavorite(favorite.filter((favorite) => {
+  //     if(favorite.checked === true) return true;
+  //   }))
+  // }
 
   return (
     <SafeAreaView

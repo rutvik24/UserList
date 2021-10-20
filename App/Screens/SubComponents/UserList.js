@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 10,
     borderWidth: 1,
+    flex: 1,
   },
 
   name: {
@@ -53,12 +54,12 @@ const styles = StyleSheet.create({
   nameContainer: {
     flexDirection: 'row',
     margin: 1,
+    width: 210,
+    justifyContent: 'space-between',
   },
 
   icon: {
     elevation: 1,
-    justifyContent: 'space-between',
-    marginHorizontal: 5,
   },
 
   detailContainer: {
