@@ -1,5 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {FlatList, SafeAreaView, Button, TouchableOpacity} from 'react-native';
+import React, {useContext, useEffect} from 'react';
+import {
+  FlatList,
+  SafeAreaView,
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import {CustomText} from '../../CommonComponent';
 import CommonStyle from '../../../Theme/CommonStyle';
 import {AppContext} from '../../../AppContext';
@@ -13,7 +19,7 @@ const Home = ({props}) => {
   const {contacts} = useSelector(state => state.user);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  // const [favorite, setFavorite] = useState([]);
+  const {flateList} = styles;
 
   useEffect(() => {
     dispatch(getUserContacts());
@@ -27,7 +33,6 @@ const Home = ({props}) => {
 
   const userDetails = item => {
     navigation.navigate('UserDetails', {item});
-    // console.log(item);
   };
 
   const renderList = ({item}) => {
@@ -36,37 +41,10 @@ const Home = ({props}) => {
         onPress={() => {
           userDetails(item);
         }}>
-        <User
-          // picture={item.picture.medium}
-          // fullName={`${item.name.first} ${item.name.last}`}
-          // email={item.email}
-          // phone={item.cell}
-          // location={`${item.location.city} ${item.location.state} ${item.location.country}`}
-          item={item}
-        />
+        <User item={item} />
       </TouchableOpacity>
     );
   };
-
-  // handleAddFavorite = () => {
-  //   if(favorite) {
-  //     setFavorite([...favorite, {item: item, key: Date.now(), checked: true}])
-  //   }
-  // };
-
-  // handleFavorite = (id) => {
-  //   setFavorite(task.map((favorite) => {
-  //     if (favorite.key === id) !favorite.checked = favorite.checked;
-  //     return favorite;
-  //   }))
-  // };
-
-  // favoriteList = (id) => {
-  //   setFavorite(favorite.filter((favorite) => {
-  //     if(favorite.checked === true) return true;
-  //   }))
-  // }
-
   return (
     <SafeAreaView
       style={[
@@ -79,7 +57,7 @@ const Home = ({props}) => {
       </CustomText>
       <Button title={'Favorite'} onPress={goNext} />
       <FlatList
-        style={{flex: 1, margin: 10, borderRadius: 10}}
+        style={flateList}
         data={contacts}
         renderItem={renderList}
         keyExtractor={item => item.login.uuid}
@@ -87,5 +65,13 @@ const Home = ({props}) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  flateList: {
+    flex: 1,
+    margin: 10,
+    borderRadius: 10,
+  },
+});
 
 export default Home;

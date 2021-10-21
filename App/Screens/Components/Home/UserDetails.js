@@ -1,19 +1,22 @@
 import React, {useContext} from 'react';
-import {
-  SafeAreaView,
-  Button,
-  Image,
-  View,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import {SafeAreaView, Image, View, StyleSheet, Text} from 'react-native';
 import CommonStyle from '../../../Theme/CommonStyle';
 import {AppContext} from '../../../AppContext';
 
 const UserDetails = ({props, route}) => {
   const {appTheme} = useContext(AppContext);
   const {item} = route.params;
-  const {topTitle, title, info, singleInfo, value, image, border} = styles;
+  const {
+    topTitle,
+    title,
+    info,
+    singleInfo,
+    value,
+    image,
+    border,
+    flexBox,
+    topFlexBox,
+  } = styles;
 
   return (
     <SafeAreaView
@@ -21,8 +24,8 @@ const UserDetails = ({props, route}) => {
         CommonStyle.flexContainer,
         {backgroundColor: appTheme.background},
       ]}>
-      <View style={{flex: 5}}>
-        <View style={{width: 340, flex: 2}}>
+      <View style={flexBox}>
+        <View style={topFlexBox}>
           <Text style={topTitle}>User Details</Text>
           <Image style={image} source={{uri: item.picture.large}} />
         </View>
@@ -100,6 +103,14 @@ const styles = StyleSheet.create({
   border: {
     borderBottomWidth: 1,
     borderColor: '#808080',
+  },
+  flexBox: {
+    flex: 5,
+  },
+
+  topFlexBox: {
+    width: 340,
+    flex: 2,
   },
 });
 

@@ -15,6 +15,7 @@ const User = props => {
     fullName,
     icon,
     detailContainer,
+    marginAll
   } = styles;
 
   return (
@@ -31,12 +32,10 @@ const User = props => {
             onPress={() => dispatch(setFavoriteUserContacts(props.item))}
           />
         </View>
-        <Text style={{margin: 1}}>{item.email}</Text>
-        <Text style={{margin: 1}}>{item.phone}</Text>
+        <Text style={marginAll}>{item.email}</Text>
+        <Text style={marginAll}>{item.phone}</Text>
         <Text
-          style={{
-            margin: 1,
-          }}>{`${location.city} ${location.state} ${location.country}`}</Text>
+          style={{marginAll}>{`${location.city} ${location.state} ${location.country}`}</Text>
       </View>
     </View>
   );
@@ -80,6 +79,9 @@ const styles = StyleSheet.create({
 
   detailContainer: {
     flexDirection: 'column',
+  },
+  marginAll: {
+    margin: 1,
   },
 });
 
