@@ -7,78 +7,99 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 import CommonStyle from '../../../Theme/CommonStyle';
 import {AppContext} from '../../../AppContext';
 
 const UserDetails = ({props, route}) => {
   const {appTheme} = useContext(AppContext);
-  const navigation = useNavigation();
   const {item} = route.params;
+  const {topTitle, title, info, singleInfo, value, image, border} = styles;
 
   return (
     <SafeAreaView
       style={[
         CommonStyle.flexContainer,
-        CommonStyle.center,
         {backgroundColor: appTheme.background},
       ]}>
-      <Image style={styles.image} source={{uri: item.picture.large}} />
-      <View style={styles.info}>
-        <View style={styles.singleInfo}>
-          <Text style={styles.title}>Name : </Text>
-          <Text
-            style={styles.value}>{`${item.name.first} ${item.name.last}`}</Text>
+      <View style={{flex: 5}}>
+        <View style={{width: 340, flex: 2}}>
+          <Text style={topTitle}>User Details</Text>
+          <Image style={image} source={{uri: item.picture.large}} />
         </View>
-        <View style={styles.singleInfo}>
-          <Text style={styles.title}>Email : </Text>
-          <Text style={styles.value}>{item.email}</Text>
-        </View>
-        <View style={styles.singleInfo}>
-          <Text style={styles.title}>Phone Number : </Text>
-          <Text style={styles.value}>{item.cell}</Text>
-        </View>
-        <View style={styles.singleInfo}>
-          <Text style={styles.title}>City : </Text>
-          <Text style={styles.value}>
-            {`${item.location.city} ${item.location.state} ${item.location.country}`}
-          </Text>
+        <View style={info}>
+          <View style={singleInfo}>
+            <Text style={title}>Name : </Text>
+            <Text style={value}>{`${item.name.first} ${item.name.last}`}</Text>
+          </View>
+          <View style={border} />
+          <View style={singleInfo}>
+            <Text style={title}>Email : </Text>
+            <Text style={value}>{item.email}</Text>
+          </View>
+          <View style={border} />
+          <View style={singleInfo}>
+            <Text style={title}>Phone Number : </Text>
+            <Text style={value}>{item.cell}</Text>
+          </View>
+          <View style={border} />
+          <View style={singleInfo}>
+            <Text style={title}>City : </Text>
+            <Text style={value}>
+              {`${item.location.city} ${item.location.state} ${item.location.country}`}
+            </Text>
+          </View>
         </View>
       </View>
-      <Button
-        style={{width: 30}}
-        title={'Go Back'}
-        onPress={() => navigation.goBack()}
-      />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   image: {
-    height: 400,
-    width: 340,
+    height: 150,
+    width: 150,
     margin: 10,
-    borderRadius: 20,
+    marginTop: 20,
+    alignSelf: 'center',
+    justifyContent: 'space-between',
+    borderRadius: 100,
   },
 
   info: {
     margin: 10,
+    flex: 3,
+    marginTop: 100,
     flexDirection: 'column',
+    alignContent: 'space-between',
   },
 
   singleInfo: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    margin: 10,
+    marginVertical: 15,
+    justifyContent: 'space-between',
   },
 
   title: {
-    fontsize: 25,
-    fontWeight: 'bold',
+    fontSize: 20,
   },
 
   value: {
-    fontSize: 15,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  topTitle: {
+    margin: 30,
+    fontSize: 30,
+    fontWeight: 'bold',
+    alignItems: 'flex-start',
+    marginLeft: 15,
+  },
+
+  border: {
+    borderBottomWidth: 1,
+    borderColor: '#808080',
   },
 });
 
