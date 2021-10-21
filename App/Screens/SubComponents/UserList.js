@@ -15,7 +15,7 @@ const User = props => {
     fullName,
     icon,
     detailContainer,
-    marginAll
+    marginAll,
   } = styles;
 
   return (
@@ -35,7 +35,9 @@ const User = props => {
         <Text style={marginAll}>{item.email}</Text>
         <Text style={marginAll}>{item.phone}</Text>
         <Text
-          style={{marginAll}>{`${location.city} ${location.state} ${location.country}`}</Text>
+          style={{
+            marginAll,
+          }}>{`${location.city} ${location.state} ${location.country}`}</Text>
       </View>
     </View>
   );
