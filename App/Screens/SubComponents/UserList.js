@@ -1,11 +1,12 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setFavoriteUserContacts} from '../../Actions/UserActions';
 
 const User = props => {
   const dispatch = useDispatch();
+  const {favorite} = useSelector(state => state.user);
   const {item} = props;
   const {picture, name, location} = item;
   const {
@@ -20,7 +21,7 @@ const User = props => {
 
   return (
     <View style={contactContainer}>
-      <Image style={image} source={{uri: picture.medium}} />
+      <Image style={image} source={{uri: picture?.medium}} />
       <View style={detailContainer}>
         <View style={nameContainer}>
           <Text style={fullName}>{`${name.first} ${name.last}`}</Text>
@@ -29,7 +30,9 @@ const User = props => {
             name="heart-outline"
             size={30}
             color="black"
-            onPress={() => dispatch(setFavoriteUserContacts(props.item))}
+            onPress={() =>
+              dispatch(setFavoriteUserContacts([...favorite, props.item]))
+            }
           />
         </View>
         <Text style={marginAll}>{item.email}</Text>

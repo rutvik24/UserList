@@ -19,4 +19,4 @@ export const userLogin = async params => {
 export const getContactList = async params => {
   const response = await axios.get(ApiConfig.contact, params);
   return response.data;
-}
+};

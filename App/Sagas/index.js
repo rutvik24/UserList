@@ -9,5 +9,5 @@ import {
 export default function* rootSaga() {
   yield takeLatest(GET_USER, getUserSaga);
   yield takeLatest(GET_CONTACTS, getUserContactSaga);
-  yield takeLatest(SET_FAVORITE, setFavoriteUserContactsSaga);
+  // yield takeLatest(SET_FAVORITE, setFavoriteUserContactsSaga);
 }

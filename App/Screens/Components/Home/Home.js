@@ -10,7 +10,7 @@ import {CustomText} from '../../CommonComponent';
 import CommonStyle from '../../../Theme/CommonStyle';
 import {AppContext} from '../../../AppContext';
 import {useDispatch, useSelector} from 'react-redux';
-import {PrivateValueStore, useNavigation} from '@react-navigation/core';
+import {useNavigation} from '@react-navigation/core';
 import {getUserContacts} from '../../../Actions/UserActions';
 import User from '../../SubComponents/UserList';
 
@@ -19,7 +19,7 @@ const Home = ({props}) => {
   const {contacts} = useSelector(state => state.user);
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const {flateList} = styles;
+  const {flatList} = styles;
 
   useEffect(() => {
     dispatch(getUserContacts());
@@ -57,7 +57,7 @@ const Home = ({props}) => {
       </CustomText>
       <Button title={'Favorite'} onPress={goNext} />
       <FlatList
-        style={flateList}
+        style={flatList}
         data={contacts}
         renderItem={renderList}
         keyExtractor={item => item.login.uuid}
@@ -67,7 +67,7 @@ const Home = ({props}) => {
 };
 
 const styles = StyleSheet.create({
-  flateList: {
+  flatList: {
     flex: 1,
     margin: 10,
     borderRadius: 10,
